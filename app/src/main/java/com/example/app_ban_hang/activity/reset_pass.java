@@ -16,4 +16,4 @@ public class reset_pass extends AppCompatActivity {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_reset_pass);
     }
-}`
+}
