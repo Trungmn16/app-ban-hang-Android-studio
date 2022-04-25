@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.DangkiActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="#FD1E1E"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:backgroundTint="#FD1E1E"
+            android:layout_marginLeft="5dp"
+            android:id="@+id/btn_dangky_quaylai"
+
+            android:src="@drawable/ic_baseline_west_24">
+
+        </ImageButton>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="Đăng ký"
+
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            >
+        </TextView>
+
+    </LinearLayout>
+
+
+    <ImageView
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:src="@drawable/abc"
+        ></ImageView>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:id="@+id/Line1"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:drawableLeft="@drawable/ic_email_24"
+            android:id="@+id/nhap_email_dangky"
+            android:drawablePadding="5dp"
+            android:hint=" Nhập email"></com.google.android.material.textfield.TextInputEditText>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="du lieu khong hop le !"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/validate_email"
+                android:textSize="17dp"
+                android:textStyle="normal"
+                android:textColor="@color/purple_700"
+                android:visibility="gone"
+                ></TextView>
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:drawableLeft="@drawable/ic_baseline_person_24"
+            android:id="@+id/nhap_username_dangky"
+            android:drawablePadding="5dp"
+            android:hint="Nhập tên tài khoản">
+
+        </com.google.android.material.textfield.TextInputEditText>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="du lieu khong hop le !"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/validate_tentaikhoan"
+            android:textSize="17dp"
+            android:textStyle="normal"
+            android:textColor="@color/purple_700"
+            android:visibility="gone"
+            ></TextView>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:inputType="textPassword"
+            android:layout_marginRight="10dp"
+            android:drawableLeft="@drawable/ic_key_24"
+            android:id="@+id/nhap_password_dangky"
+            android:drawableRight="@drawable/ic_eye_24"
+            android:drawablePadding="5dp"
+            android:hint="Nhập mật khẩu ">
+
+        </com.google.android.material.textfield.TextInputEditText>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="du lieu khong hop le !"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/validate_pass"
+            android:textSize="17dp"
+            android:textStyle="normal"
+            android:textColor="@color/purple_700"
+            android:visibility="gone"
+            ></TextView>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:drawableLeft="@drawable/ic_key_24"
+            android:drawablePadding="5dp"
+            android:inputType="textPassword"
+            android:id="@+id/nhaplai_password_dangky"
+            android:drawableRight="@drawable/ic_eye_24"
+            android:hint=" Nhập lại mật khẩu">
+
+        </com.google.android.material.textfield.TextInputEditText>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="du lieu khong hop le !"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/validate_repass"
+            android:textSize="17dp"
+            android:textStyle="normal"
+            android:textColor="@color/purple_700"
+            android:visibility="gone"
+            ></TextView>
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/nhap_mobile_dangky"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:inputType="number"
+            android:drawableLeft="@drawable/ic_phone_24"
+            android:drawablePadding="5dp"
+            android:hint=" Nhập số điện thoại">
+
+        </com.google.android.material.textfield.TextInputEditText>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="du lieu khong hop le !"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/validate_sdt"
+            android:textSize="17dp"
+            android:textStyle="normal"
+            android:textColor="@color/purple_700"
+            android:visibility="gone"
+            ></TextView>
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_dangky"
+        android:text="Đăng ký"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#FD1E1E"
+        android:textColor="@color/white"
+        android:background="@drawable/background_button"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:drawablePadding="5dp"
+        ></androidx.appcompat.widget.AppCompatButton>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="bạn đã có tài khoản. "
+            android:layout_marginTop="20dp"
+            android:textSize="15dp"
+
+            ></TextView>
+
+        <TextView
+            android:id="@+id/txtdangnhapngay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text=" Đăng nhập ngay !"
+            android:textColor="#FD1E1E"
+            android:textSize="15dp"
+            android:textStyle="bold"></TextView>
+
+
+    </LinearLayout>
+
+</LinearLayout>
