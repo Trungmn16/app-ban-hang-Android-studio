@@ -26,7 +26,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class Dangnhap_activity extends AppCompatActivity {
-    TextView txtdangkyngay, txtquenmk  ;
+    TextView txtdangkyngay, txtquenmk ;
     ImageButton imgButton;
 
     Button button;
@@ -53,10 +53,11 @@ public class Dangnhap_activity extends AppCompatActivity {
         txtquenmk.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick (View view) {
-                Intent intent = new Intent (getApplicationContext (),reset_pass.class);
-                startActivity (intent);
+                Intent cm = new Intent (getApplicationContext (),reset_pass_activity.class);
+                startActivity (cm);
             }
         });
+
 
 
 
@@ -162,7 +163,8 @@ public class Dangnhap_activity extends AppCompatActivity {
         email =findViewById (R.id.email_dangnhap);
         pass = findViewById (R.id.password_dangnhap);
         button = findViewById (R.id.btn_dangnhap);
-        txtquenmk = findViewById (R.id.txtquenmk);
+        txtquenmk =findViewById (R.id.txt_quenmatkhau);
+
 
         //read data
         if(Paper.book ().read ("email")!=null &&  Paper.book ().read ("pass")!=null ){
