@@ -4,7 +4,8 @@ if($_GET['key'] && $_GET['reset'])
 {
   $email=$_GET['key'];
   $pass=$_GET['reset'];
-  $query = "select email,pass from user where md5(email)='$email' and md5(pass)='$pass'";
+  $query = "select email,pass from user where email='$email' and pass='$pass'";
+  print_r($query);
   $data = mysqli_query($conn, $query);
 
   if($data==true)

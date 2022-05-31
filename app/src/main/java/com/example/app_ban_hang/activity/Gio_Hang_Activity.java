@@ -45,6 +45,7 @@ public class Gio_Hang_Activity extends AppCompatActivity {
                 startActivity (muahang);
             }
         });
+
     }
 
     private void tinhtongtien ( ) {

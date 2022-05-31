@@ -106,6 +106,13 @@ public class DangkiActivity extends AppCompatActivity {
         String str_repass = repass.getText ().toString ().trim ();
         String str_mobile = mobile.getText ().toString ().trim ();
         String str_username = username.getText ().toString ().trim ();
+        if(!TextUtils.isEmpty (str_email)&&!TextUtils.isEmpty (str_username)&&!TextUtils.isEmpty (str_pass)&&!TextUtils.isEmpty (str_repass)&&!TextUtils.isEmpty (str_mobile)){
+            vld_email.setVisibility (View.GONE);
+            vld_taikhoan.setVisibility (View.GONE);
+            vld_pass.setVisibility (View.GONE);
+            vld_repass.setVisibility (View.GONE);
+            vld_sdt.setVisibility (View.GONE);
+        }
         if(TextUtils.isEmpty (str_email)){
             vld_email.setText ("Bạn chưa nhập Email ! ");
             vld_email.setVisibility (View.VISIBLE);
@@ -140,6 +147,7 @@ public class DangkiActivity extends AppCompatActivity {
 
 
             //past data
+
         }else   if(str_pass.equals (str_repass)){
             vld_sdt.setVisibility (View.GONE);
                 compositeDisposable.add (apiBanHang.dangky (str_email,str_pass,str_username,str_mobile)

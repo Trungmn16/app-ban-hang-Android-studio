@@ -4,26 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:orientation="vertical"
-    tools:context=".activity.reset_pass">
+    tools:context=".activity.reset_pass_activity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#FD1E1E"
-        android:orientation="horizontal"
-
-        >
+        android:orientation="horizontal">
 
         <ImageButton
-            android:id="@+id/img_reset_quaylai"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_marginLeft="5dp"
             android:backgroundTint="#FD1E1E"
-
             android:src="@drawable/ic_baseline_west_24">
-
         </ImageButton>
 
         <TextView
@@ -32,36 +28,50 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-
             android:text="Khôi phục mật khẩu"
             android:textColor="@color/white"
             android:textSize="30dp"
-            android:textStyle="bold"></TextView>
+            android:textStyle="bold">
+        </TextView>
 
     </LinearLayout>
-
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="250dp"
-        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_height="wrap_content"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginTop="30dp"
+        android:id="@+id/Line1"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         >
-        <EditText
+
+        <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/edt_resetpass"
-            android:inputType="textEmailAddress"
-            android:hint="Email"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:drawableLeft="@drawable/ic_email_24"
-            android:drawablePadding="10dp"
-            ></EditText>>
+            android:id="@+id/edt_email_khoiphuc"
+            android:drawablePadding="5dp"
+            android:hint=" Nhập email"></com.google.android.material.textfield.TextInputEditText>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="du lieu khong hop le !"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/validate_email_khoiphuc"
+            android:textSize="17dp"
+            android:textStyle="normal"
+            android:textColor="@color/purple_700"
+            android:visibility="gone"
+            ></TextView>
+
 
     </com.google.android.material.textfield.TextInputLayout>
+
     <Button
         android:layout_marginLeft="10dp"
-        android:id="@+id/btn_resetpass"
+        android:id="@+id/btn_khoiphuc"
         android:layout_marginRight="10dp"
         android:background="@color/purple_500"
         android:layout_marginTop="25dp"
@@ -72,12 +82,13 @@
         android:layout_height="wrap_content"
 
         ></Button>
-    <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:id="@+id/progressbar"
+            ></ProgressBar>
 
-        android:id="@+id/progressbarReset"
-        ></ProgressBar>
+
 
 </LinearLayout>

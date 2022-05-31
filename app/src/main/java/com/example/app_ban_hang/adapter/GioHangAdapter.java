@@ -3,12 +3,14 @@ package com.example.app_ban_hang.adapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,8 +19,13 @@ import com.bumptech.glide.Glide;
 import com.example.app_ban_hang.Interface.Image_clicklistener;
 import com.example.app_ban_hang.R;
 import com.example.app_ban_hang.Utils.utils;
+import com.example.app_ban_hang.activity.ChitietActivity;
+import com.example.app_ban_hang.activity.DangkiActivity;
+import com.example.app_ban_hang.activity.Gio_Hang_Activity;
+import com.example.app_ban_hang.activity.LienheActivity;
 import com.example.app_ban_hang.model.Envenbus.Tinh_Tong_Event;
 import com.example.app_ban_hang.model.Giohang;
+import com.example.app_ban_hang.model.New_Product;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -26,10 +33,10 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHolder> {
-
+    New_Product sanPhamMoi;
         Context context;
         List<Giohang> giohangList;
-
+        int poss ;
     public GioHangAdapter (Context context, List<Giohang> giohangList) {
         this.context = context;
         this.giohangList = giohangList;
@@ -41,9 +48,30 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
         View view = LayoutInflater.from (parent.getContext ()).inflate (R.layout.item_giohang,parent,false);
         return new MyViewHolder (view);
     }
+    public void Remove_product(View view, int pos){
+        AlertDialog.Builder builder = new AlertDialog.Builder (view.getRootView ().getContext ());
+        builder.setTitle ("Thông báo");
+        builder.setMessage ("Bạn có muốn xoá sản phẩm này khỏi giỏ hàng không");
+        builder.setPositiveButton ("Đồng ý", new DialogInterface.OnClickListener () {
+            @Override
+            public void onClick (DialogInterface dialogInterface, int i) {
+                utils.manggiohang.remove (pos);
+                notifyDataSetChanged ();
+                EventBus.getDefault ().postSticky (new Tinh_Tong_Event ());
+            }
+        });
+        builder.setNegativeButton ("Huỷ", new DialogInterface.OnClickListener () {
+            @Override
+            public void onClick (DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss ();
+            }
+        });
+        builder.show ();
+    }
 
     @Override
     public void onBindViewHolder (@NonNull MyViewHolder holder, int position) {
+         int poss = position;
         Giohang giohang = giohangList.get (position);
         holder.item_giohang_tensp.setText (giohang.getTensp ());
         holder.item_giohang_soluong.setText (giohang.getSoluong ()+" ");
@@ -66,30 +94,17 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
                         holder.item_giohang_giaten.setText (decimalFormat.format (gia));
                         EventBus.getDefault ().postSticky (new Tinh_Tong_Event ());
                     }else if (giohangList.get (pos).getSoluong ()==1){
-                        AlertDialog.Builder builder = new AlertDialog.Builder (view.getRootView ().getContext ());
-                        builder.setTitle ("Thông báo");
-                        builder.setMessage ("Bạn có muốn xoá sản phẩm này khỏi giỏ hàng không");
-                        builder.setPositiveButton ("Đồng ý", new DialogInterface.OnClickListener () {
-                            @Override
-                            public void onClick (DialogInterface dialogInterface, int i) {
-                                utils.manggiohang.remove (pos);
-                                notifyDataSetChanged ();
-                                EventBus.getDefault ().postSticky (new Tinh_Tong_Event ());
-                            }
-                        });
-                        builder.setNegativeButton ("Huỷ", new DialogInterface.OnClickListener () {
-                            @Override
-                            public void onClick (DialogInterface dialogInterface, int i) {
-                                dialogInterface.dismiss ();
-                            }
-                        });
-                        builder.show ();
-
+                      Remove_product (view, pos);
                     }
                 }else if(giatri==2){
-                    if (giohangList.get (pos).getSoluong ()<11){
+                    if (giohangList.get (pos).getSoluong ()<=10){
                         int soluongmoi = giohangList.get (pos).getSoluong ()+1;
                         giohangList.get (pos).setSoluong (soluongmoi);
+                        if(soluongmoi>=10){
+                          Remove_product (view,  pos);
+
+
+                        }
 
                     }
                     holder.item_giohang_soluong.setText (giohangList.get (pos).getSoluong ()+" ");
@@ -101,6 +116,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
 
             }
         });
+        
 
     }
 
@@ -109,8 +125,9 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
         return giohangList.size ();
     }
 
-    public class MyViewHolder  extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class MyViewHolder  extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         ImageView item_giohang_img, img_tru,img_cong;
+
         Image_clicklistener image_clicklistener;
         TextView item_giohang_tensp, item_giohang_gia, item_giohang_soluong,item_giohang_giaten;
         public MyViewHolder (@NonNull View itemView) {
@@ -127,7 +144,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
 
             img_cong.setOnClickListener (this);
             img_tru.setOnClickListener (this);
-
+            itemView.setOnLongClickListener (this);
         }
 
         public void setImage_clicklistener (Image_clicklistener image_clicklistener) {
@@ -142,6 +159,14 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
             }else if(view==img_cong){
                 image_clicklistener.onImageClick (view,getAdapterPosition (),2);
             }
+        }
+
+
+        @Override
+        public boolean onLongClick (View view ) {
+
+            Remove_product (view, poss);
+            return true;
         }
     }
 }
