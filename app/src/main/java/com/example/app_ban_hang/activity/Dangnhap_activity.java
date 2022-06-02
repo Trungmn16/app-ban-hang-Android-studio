@@ -27,7 +27,6 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class Dangnhap_activity extends AppCompatActivity {
     TextView txtdangkyngay, txtquenmk ;
-    ImageButton imgButton;
 
     Button button;
     EditText email, pass ;
@@ -87,13 +86,6 @@ public class Dangnhap_activity extends AppCompatActivity {
             }
         });
 
-        imgButton.setOnClickListener (new View.OnClickListener () {
-            @Override
-            public void onClick (View view) {
-                Intent dangnhap = new Intent (getApplicationContext (),Gio_Hang_Activity.class);
-                startActivity (dangnhap);
-            }
-        });
 
 
 
@@ -159,7 +151,7 @@ public class Dangnhap_activity extends AppCompatActivity {
 
         apiBanHang = RetrofitClient.getInstane (utils.BASE_URL).create (Api_ban_hang.class);
         txtdangkyngay =findViewById (R.id.txt_dangkyngay);
-        imgButton = findViewById (R.id.btn_dangnhap_quaylai);
+
         email =findViewById (R.id.email_dangnhap);
         pass = findViewById (R.id.password_dangnhap);
         button = findViewById (R.id.btn_dangnhap);

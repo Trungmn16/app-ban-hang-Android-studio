@@ -1,0 +1,10 @@
+Gson - post data dat hang 
+Cung cấp các phương thức toJson()và đơn giản fromJson()để chuyển đổi các đối tượng Java sang JSON và ngược lại
+Cho phép các đối tượng không thể sửa đổi tồn tại từ trước được chuyển đổi sang và từ JSON
+Hỗ trợ rộng rãi Java Generics
+Cho phép đại diện tùy chỉnh cho các đối tượng
+Hỗ trợ các đối tượng phức tạp tùy ý (với hệ thống phân cấp kế thừa sâu sắc và sử dụng rộng rãi các loại chung)
+
+
+//
+[{"giasp":33990000,"hinhsp":"https://cdn.tgdd.vn/Products/Images/42/230529/iphone-13-pro-max-sierra-blue-600x600.jpg","idsp":19,"soluong":1,"tensp":"Điện thoại iPhone 13 Pro"},{"giasp":20500000,"hinhsp":"https://cdn.cellphones.com.vn/media/catalog/product/cache/7/image/300x/9df78eab33525d08d6e5fb8d27136e95/y/e/yellow_final_2.jpg","idsp":20,"soluong":3,"tensp":"Samsung Galaxy Note 20 Ultra 5G"}]

@@ -15,16 +15,16 @@
         android:theme="@style/Theme.App_ban_hang"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activity.Thanhtoan_activity"
+            android:exported="false" />
+        <activity
             android:name=".activity.LienheActivity"
             android:exported="false" />
         <activity
             android:name=".activity.reset_pass_activity"
             android:exported="false" />
         <activity
-            android:name=".activity.ThanhToanActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.Dangnhap_activity"
+            android:name=".activity.MainActivity"
             android:exported="false" />
         <activity
             android:name=".activity.DangkiActivity"
@@ -42,7 +42,7 @@
             android:name=".activity.DienThoaiActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".activity.Dangnhap_activity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
