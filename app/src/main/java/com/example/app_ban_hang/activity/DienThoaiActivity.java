@@ -1,11 +1,14 @@
 package com.example.app_ban_hang.activity;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -27,6 +30,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class DienThoaiActivity extends AppCompatActivity {
     Toolbar toolbar;
+
     RecyclerView recyclerView;
     Api_ban_hang apiBanHang;
     CompositeDisposable compositeDisposable = new CompositeDisposable ();
@@ -138,6 +142,8 @@ public class DienThoaiActivity extends AppCompatActivity {
     private void ActionToolBar ( ) {
     setSupportActionBar (toolbar);
     getSupportActionBar ().setDisplayHomeAsUpEnabled (true);
+
+
     toolbar.setNavigationOnClickListener (new View.OnClickListener () {
         @Override
         public void onClick (View view) {

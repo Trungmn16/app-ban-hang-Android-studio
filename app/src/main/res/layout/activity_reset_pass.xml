@@ -73,7 +73,7 @@
         android:layout_marginLeft="10dp"
         android:id="@+id/btn_khoiphuc"
         android:layout_marginRight="10dp"
-        android:background="@color/purple_500"
+        android:background="@drawable/background_button"
         android:layout_marginTop="25dp"
         android:text="Tiếp tục"
         android:textStyle="bold"

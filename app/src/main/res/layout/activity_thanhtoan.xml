@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.Gio_Hang_Activity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:id="@+id/toolbar_thanhtoan"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Thanh Toán"
+        android:background="#FD1E1E"
+        app:titleTextColor="@color/white"
+        android:layout_height="?attr/actionBarSize">
+
+    </androidx.appcompat.widget.Toolbar>
+    <androidx.cardview.widget.CardView
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_thanhtoan"
+        android:layout_marginTop="10dp"
+        android:id="@+id/card_view"
+        android:elevation="8dp"
+        app:cardCornerRadius="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <LinearLayout
+                android:padding="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tổng Tiền :"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    ></TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="250.000"
+                    android:textColor="#EA3A3A"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:id="@+id/txt_tongtien"
+                    ></TextView>
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:background="#AAFCFF"
+                ></View>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:layout_marginLeft="10dp"
+                >
+                <ImageView
+                    android:src="@drawable/ic_phone_24"
+                    android:layout_width="50dp"
+                    android:layout_height="35dp">
+
+                </ImageView>
+                <TextView
+                    android:layout_marginTop="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="0375281284"
+                    android:textColor="#EA3A3A"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:id="@+id/txt_sdt"
+                    ></TextView>
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="#AAFCFF"
+                ></View>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:layout_marginLeft="10dp"
+                >
+                <ImageView
+                    android:src="@drawable/ic_email_24"
+                    android:layout_width="50dp"
+                    android:layout_height="35dp">
+
+                </ImageView>
+                <TextView
+                    android:layout_marginTop="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="maitrungmnt01@gmail.com"
+                    android:textColor="#EA3A3A"
+                    android:textStyle="bold"
+                    android:id="@+id/txt_email"
+                    android:textSize="20dp"
+                    ></TextView>
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="#AAFCFF"
+                ></View>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.textfield.TextInputLayout
+        app:layout_constraintTop_toBottomOf="@+id/card_view"
+        android:id="@+id/input_layout"
+        android:layout_width="match_parent"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginTop="5dp"
+        android:layout_height="wrap_content">
+        <com.google.android.material.textfield.TextInputEditText
+            android:drawableLeft="@drawable/ic_baseline_local_shipping_24"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="10dp"
+            android:textSize="20dp"
+            android:id="@+id/edt_location"
+            android:hint=" Vui lòng nhập địa chỉ giao hàng"
+            ></com.google.android.material.textfield.TextInputEditText>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:id="@+id/btn_dathang"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/background_button"
+        android:text="Đặt hàng"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        ></androidx.appcompat.widget.AppCompatButton>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
