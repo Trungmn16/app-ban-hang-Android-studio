@@ -7,27 +7,48 @@ $tongtien = $_POST['tongtien'];
 $iduser = $_POST['iduser'];
 $diachi = $_POST['diachi'];
 $soluong = $_POST['soluong'];
-
-$query = ' INSERT INTO 'donhang'('iduser', 'diachi', 'sdt', 'email', 'soluong', 'tongtien') VALUES('.$iduser.' , "'.$diachi.'","'.$sdt.'","'.$email.'",'.$soluong.',"'.$tongtien.'")';
-echo $query;
+$chitiet = $_POST['chitiet'];
+$query = 'INSERT INTO `donhang`(`iduser`, `diachi`, `sdt`, `email` ,`soluong`,`tongtien`) VALUES ('.$iduser.' , "'.$diachi.'" , "'.$sdt.'" , "'.$email.'" , '.$soluong.' , "'.$tongtien.'")';
 $data = mysqli_query($conn, $query);
 if($data == true) {
-    $query = 'SELECT LAST_INSERT_ID()'; 
+    $query = 'SELECT id AS iddonhang FROM `donhang` WHERE `iduser`='.$iduser.' ORDER BY id DESC LIMIT 1'; 
     $data = mysqli_query($conn, $query);
     while($row = mysqli_fetch_assoc($data)){
-        $result[] = ($row);
+        $iddonhang = ($row);
     }
-    print_r ($result);
+    if(!empty($iddonhang)){
+        //co don hang
+        //chuyen json ve mang
+        $chitiet = json_decode($chitiet , true);
+        foreach ($chitiet as $key => $value){
+             $truyvan = 'INSERT INTO `chitietdonhang`(`iddonhang`, `idsp`, `soluong`, `gia`) VALUES ('.$iddonhang["iddonhang"].', '.$value["idsp"].' , '.$value["soluong"].' ,"'.$value["giasp"].'")';
+    
+     
+             $data = mysqli_query($conn, $truyvan);
+            }
+            if($data == true){
+                $arr=[
+                    'success'=>true,
+                    'message'=>" complete",              
+                ];    
+             }else{
+                $arr=[
+                    'success'=>false,
+                    'message'=>"no complete",  
+                ];
+             }
+		 print_r(json_encode($arr));
+    }
+  
+ 
 }else{
     $arr=[
         'success'=>false,
-        'message'=>"no complete",
+        'message'=>"no k complete",
         
         
     ];
-
+    print_r(json_encode($arr));
 }
 
-die();
-print_r(json_encode($arr));
 ?>

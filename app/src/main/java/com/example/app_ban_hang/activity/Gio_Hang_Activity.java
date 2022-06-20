@@ -31,7 +31,8 @@ public class Gio_Hang_Activity extends AppCompatActivity {
     RecyclerView recyclerView;
     GioHangAdapter adapter;
     List<Giohang> giohangList;
-    long tongtiensp=0;
+
+    long tongtiensp;
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -39,6 +40,11 @@ public class Gio_Hang_Activity extends AppCompatActivity {
         initView();
         initcontrol();
         tinhtongtien();
+
+
+
+
+
         btnmuahang.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick (View view) {
@@ -50,8 +56,9 @@ public class Gio_Hang_Activity extends AppCompatActivity {
 
     }
 
-    private void tinhtongtien ( ) {
 
+    private void tinhtongtien ( ) {
+        tongtiensp = 0 ;
         for (int i = 0 ; i < utils.manggiohang.size ();i++){
             tongtiensp=tongtiensp+(utils.manggiohang.get (i).getGiasp ()*utils.manggiohang.get (i).getSoluong ());
         }
@@ -89,6 +96,7 @@ public class Gio_Hang_Activity extends AppCompatActivity {
         btnmuahang = findViewById (R.id.btn_muahang);
 
     }
+
 
     @Override
     protected void onStart ( ) {

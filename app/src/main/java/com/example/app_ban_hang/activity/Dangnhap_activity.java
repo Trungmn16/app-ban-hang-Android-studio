@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.view.MotionEvent;
@@ -26,13 +27,14 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class Dangnhap_activity extends AppCompatActivity {
-    TextView txtdangkyngay, txtquenmk ;
+    TextView txtdangkyngay, txtquenmk ,vldemail,vldpass , vldlogin;
 
     Button button;
     EditText email, pass ;
     Api_ban_hang apiBanHang;
 
     CompositeDisposable compositeDisposable = new CompositeDisposable ();
+    boolean isLogin = false ;
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -77,14 +79,7 @@ public class Dangnhap_activity extends AppCompatActivity {
                 return false;
             }
         });
-        button.setOnClickListener (new View.OnClickListener () {
-            @Override
-            public void onClick (View view) {
-                Intent intent = new Intent (getApplicationContext (),MainActivity.class);
-                startActivity (intent);
 
-            }
-        });
 
 
 
@@ -92,57 +87,62 @@ public class Dangnhap_activity extends AppCompatActivity {
         button.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick (View view) {
-                //  dangnhap();
+
                 String str_email = email.getText ().toString ().trim ();
                 String str_pass = pass.getText ().toString ().trim ();
                 if (TextUtils.isEmpty (str_email)) {
-                    Toast.makeText (getApplicationContext (), "Bạn chưa nhập Email", Toast.LENGTH_LONG).show ();
+                    vldemail.setText ("Bạn chưa nhập email!");
+                    vldemail.setVisibility (View.VISIBLE);
+                    vldlogin.setVisibility (View.GONE);
+                    vldlogin.setVisibility (View.GONE);
                     email.requestFocus ();
                 } else if (TextUtils.isEmpty (str_pass)) {
-                    Toast.makeText (getApplicationContext (), "Bạn chưa nhập mật khẩu", Toast.LENGTH_LONG).show ();
+                    vldpass.setText ("Bạn chưa nhập password!");
+                    vldemail.setVisibility (View.GONE);
+                    vldpass.setVisibility (View.VISIBLE);
+                    vldlogin.setVisibility (View.GONE);
                     pass.requestFocus ();
                 }else{
                     //save
                     Paper.book().write("email", str_email);
                     Paper.book().write("pass", str_pass);
+                    dangnhap (str_email,str_pass);
 
-                    compositeDisposable.add (apiBanHang.dangnhap (str_email,str_pass)
-                    .subscribeOn (Schedulers.io ())
-                    .observeOn (AndroidSchedulers.mainThread ())
-                    .subscribe (
-                            user_model -> {
-                                if(user_model.isSuccess ()){
-                                    utils.user_current = user_model.getResult ().get (0);
-                                    Intent intent = new Intent (getApplicationContext (),MainActivity.class);
-                                    startActivity (intent);
-                                    finish ();
-                                }
 
-                            },
-                            throwable -> {
-                                Toast.makeText (getApplicationContext (), throwable.getMessage (), Toast.LENGTH_LONG).show ();
-                            }
-                    ));
                 }
             }
         });
         }
 
-    private void dangnhap ( ) {
-        String str_email = email.getText ().toString ().trim ();
-        String str_pass = pass.getText ().toString ().trim ();
-        if(TextUtils.isEmpty (str_email)){
-            Toast.makeText (getApplicationContext (),"Bạn chưa nhập Email",Toast.LENGTH_LONG).show ();
-            email.requestFocus ();
-    }else if(TextUtils.isEmpty (str_pass)){
-            Toast.makeText (getApplicationContext (),"Bạn chưa nhập mật khẩu",Toast.LENGTH_LONG).show ();
-            pass.requestFocus ();
+    private void dangnhap (String email , String pass ) {
+        compositeDisposable.add (apiBanHang.dangnhap (email,pass)
+                .subscribeOn (Schedulers.io ())
+                .observeOn (AndroidSchedulers.mainThread ())
+                .subscribe (
+                        user_model -> {
 
-    }else {
-            Toast.makeText (getApplicationContext (), "Thành công", Toast.LENGTH_LONG).show ();
-            Intent dangnhap = new Intent (getApplicationContext (),Gio_Hang_Activity.class);
-            startActivity (dangnhap);
-        }
+                            if(user_model.isSuccess ()){
+                               isLogin=true;
+
+                                Paper.book().write("islogin", isLogin);
+                                utils.user_current = user_model.getResult ().get (0);
+                                Intent intent = new Intent (getApplicationContext (),MainActivity.class);
+                                startActivity (intent);
+                                finish ();
+                            }else {
+                                vldpass.setVisibility (View.GONE);
+                                vldlogin.setVisibility (View.VISIBLE);
+                            }
+
+                        },
+                        throwable -> {
+                            Toast.makeText (getApplicationContext (),throwable.getMessage (),Toast.LENGTH_LONG).show ();
+
+
+                        }
+                ));
+
+
 
     }
 
@@ -156,12 +156,27 @@ public class Dangnhap_activity extends AppCompatActivity {
         pass = findViewById (R.id.password_dangnhap);
         button = findViewById (R.id.btn_dangnhap);
         txtquenmk =findViewById (R.id.txt_quenmatkhau);
+        vldemail = findViewById (R.id.validate_email_login);
+        vldpass=findViewById (R.id.validate_matkhau_login);
+        vldlogin=findViewById (R.id.validate_login);
 
 
         //read data
         if(Paper.book ().read ("email")!=null &&  Paper.book ().read ("pass")!=null ){
-            email.setText (utils.user_current.getEmail ());
-            pass.setText (utils.user_current.getPass ());
+                email.setText (utils.user_current.getEmail ());
+                pass.setText (utils.user_current.getPass ());
+                if(Paper.book ().read("islogin")!=null){
+                   boolean flag = Paper.book ().read("islogin");
+                    if(flag){
+                        new Handler ().postDelayed (new Runnable () {
+                            @Override
+                            public void run ( ) {
+                                dangnhap (Paper.book ().read("email"), Paper.book ().read ("pass"));
+                            }
+                        },1000);
+                    }
+                }
+
         }
     }
     protected  void onResmuse(){

@@ -34,6 +34,7 @@ import com.example.app_ban_hang.Retrofit.RetrofitClient;
 import com.example.app_ban_hang.Utils.utils;
 import com.example.app_ban_hang.adapter.New_Product_Adapter;
 import com.example.app_ban_hang.adapter.type_product_Adapter;
+import com.example.app_ban_hang.model.Donhang;
 import com.example.app_ban_hang.model.New_Product;
 import com.example.app_ban_hang.model.New_Product_Model;
 import com.example.app_ban_hang.model.type_product;
@@ -105,6 +106,12 @@ public class MainActivity extends AppCompatActivity {
                         Intent laptop = new Intent (getApplicationContext (),DienThoaiActivity.class);
                         laptop.putExtra ("type",2 );
                         startActivity (laptop);
+                        break;
+
+                    case 5:
+                        Intent Donhang = new Intent (getApplicationContext (),XemdonActivity.class);
+
+                        startActivity (Donhang);
                         break;
                 }
             }

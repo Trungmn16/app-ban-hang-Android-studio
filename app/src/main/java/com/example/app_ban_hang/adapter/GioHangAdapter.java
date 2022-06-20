@@ -23,6 +23,8 @@ import com.example.app_ban_hang.activity.ChitietActivity;
 import com.example.app_ban_hang.activity.DangkiActivity;
 import com.example.app_ban_hang.activity.Gio_Hang_Activity;
 import com.example.app_ban_hang.activity.LienheActivity;
+import com.example.app_ban_hang.activity.MainActivity;
+import com.example.app_ban_hang.activity.reset_pass_activity;
 import com.example.app_ban_hang.model.Envenbus.Tinh_Tong_Event;
 import com.example.app_ban_hang.model.Giohang;
 import com.example.app_ban_hang.model.New_Product;
@@ -37,6 +39,10 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
         Context context;
         List<Giohang> giohangList;
         int poss ;
+
+
+
+
     public GioHangAdapter (Context context, List<Giohang> giohangList) {
         this.context = context;
         this.giohangList = giohangList;
@@ -45,9 +51,11 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder (@NonNull ViewGroup parent, int viewType) {
+
         View view = LayoutInflater.from (parent.getContext ()).inflate (R.layout.item_giohang,parent,false);
         return new MyViewHolder (view);
     }
+
     public void Remove_product(View view, int pos){
         AlertDialog.Builder builder = new AlertDialog.Builder (view.getRootView ().getContext ());
         builder.setTitle ("Thông báo");
@@ -67,11 +75,12 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
             }
         });
         builder.show ();
+        notifyDataSetChanged ();
     }
 
     @Override
     public void onBindViewHolder (@NonNull MyViewHolder holder, int position) {
-         int poss = position;
+
         Giohang giohang = giohangList.get (position);
         holder.item_giohang_tensp.setText (giohang.getTensp ());
         holder.item_giohang_soluong.setText (giohang.getSoluong ()+" ");
@@ -83,6 +92,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
         holder.setImage_clicklistener (new Image_clicklistener () {
             @Override
             public void onImageClick (View view, int pos, int giatri) {
+                poss = pos;
                 Log.d ("TAG","onImageClick"+pos+"..."+giatri);
                 if(giatri==1){
                     if(giohangList.get (pos).getSoluong ()>1){
@@ -93,24 +103,43 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
                         long gia = giohangList.get (pos).getSoluong ()*giohangList.get (pos).getGiasp ();
                         holder.item_giohang_giaten.setText (decimalFormat.format (gia));
                         EventBus.getDefault ().postSticky (new Tinh_Tong_Event ());
-                    }else if (giohangList.get (pos).getSoluong ()==1){
-                      Remove_product (view, pos);
                     }
+                    else if (giohangList.get (pos).getSoluong ()==1){
+                        Remove_product (view, pos);
+                }
                 }else if(giatri==2){
-                    if (giohangList.get (pos).getSoluong ()<=10){
+                    if (giohangList.get (pos).getSoluong ()<=11){
                         int soluongmoi = giohangList.get (pos).getSoluong ()+1;
                         giohangList.get (pos).setSoluong (soluongmoi);
-                        if(soluongmoi>=10){
-                          Remove_product (view,  pos);
+                        if(soluongmoi>10){
+                            AlertDialog.Builder builder = new AlertDialog.Builder (view.getRootView ().getContext ());
+                            builder.setTitle ("Thông báo");
+                            builder.setMessage ("Sản phẩm vượt quá số lượng cho phép . Nếu bạn vẫn muốn mua hãy liên hệ với chủ shop");
+                            builder.setPositiveButton ("Đồng ý", new DialogInterface.OnClickListener () {
+                                @Override
+                                public void onClick (DialogInterface dialogInterface, int i) {
+
+                                    Intent intent = new Intent (context, LienheActivity.class);
+                                    intent.addFlags (Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    context.startActivity (intent);
+                                }
+                            });
+                            builder.setNegativeButton ("Huỷ", new DialogInterface.OnClickListener () {
+                                @Override
+                                public void onClick (DialogInterface dialogInterface, int i) {
+                                    int soluongmoi = giohangList.get (pos).getSoluong ();
+                                    giohangList.get (pos).setSoluong (soluongmoi=10);
+
+                                    dialogInterface.dismiss ();
+                                    holder.item_giohang_soluong.setText (giohangList.get (pos).getSoluong ()+" ");
+                                }
+                            });
+                            builder.show ();
 
 
                         }
 
                     }
-                    holder.item_giohang_soluong.setText (giohangList.get (pos).getSoluong ()+" ");
-                    long gia = giohangList.get (pos).getSoluong ()*giohangList.get (pos).getGiasp ();
-                    holder.item_giohang_giaten.setText (decimalFormat.format (gia));
-                    EventBus.getDefault ().postSticky (new Tinh_Tong_Event ());
 
                 }
 

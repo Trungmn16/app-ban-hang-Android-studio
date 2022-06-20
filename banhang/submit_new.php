@@ -9,9 +9,12 @@ if(isset($_POST['submit_password']) && $_POST['email'])
 
   $data = mysqli_query($conn, $query);
   if($data == true){
-    <div class="alert alert-success">
-  <strong>Đổi mật khẩu thành công!</strong> 
+?>
+
+       <div style="text-align:center;">
+        <H1>Đổi mật khẩu thành công!</H1> 
 	</div>
+  <?php
   }
 
 }

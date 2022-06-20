@@ -1,4 +1,6 @@
-Gson - post data dat hang 
+
+-Recofit
+-Gson - post data dat hang 
 Cung cấp các phương thức toJson()và đơn giản fromJson()để chuyển đổi các đối tượng Java sang JSON và ngược lại
 Cho phép các đối tượng không thể sửa đổi tồn tại từ trước được chuyển đổi sang và từ JSON
 Hỗ trợ rộng rãi Java Generics

@@ -15,16 +15,19 @@
         android:theme="@style/Theme.App_ban_hang"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activity.XemdonActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.Thanhtoan_activity"
             android:exported="false" />
         <activity
-            android:name=".activity.LienheActivity"
+            android:name=".activity.MainActivity"
             android:exported="false" />
         <activity
             android:name=".activity.reset_pass_activity"
             android:exported="false" />
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".activity.ChitietActivity"
             android:exported="false" />
         <activity
             android:name=".activity.DangkiActivity"
@@ -33,7 +36,7 @@
             android:name=".activity.Gio_Hang_Activity"
             android:exported="false" />
         <activity
-            android:name=".activity.ChitietActivity"
+            android:name=".activity.LienheActivity"
             android:exported="false" />
         <activity
             android:name=".activity.LaptopActivity"
