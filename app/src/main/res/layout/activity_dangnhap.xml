@@ -59,39 +59,60 @@
             android:drawableLeft="@drawable/ic_email_24"
             android:drawablePadding="5dp"
             android:hint="Email"></com.google.android.material.textfield.TextInputEditText>
-
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="du lieu khong hop le !"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/validate_email_login"
+            android:textSize="17dp"
+            android:textStyle="normal"
+            android:textColor="@color/purple_700"
+            android:visibility="gone"
+            ></TextView>
     </com.google.android.material.textfield.TextInputLayout>
+
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            >
+            android:layout_marginTop="5dp">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/password_dangnhap"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:drawableLeft="@drawable/ic_key_24"
-                android:drawablePadding="5dp"
-                android:inputType="textPassword"
-                android:id="@+id/password_dangnhap"
                 android:drawableRight="@drawable/ic_eye_24"
-                android:hint="Mật khẩu">
+                android:drawablePadding="5dp"
+                android:hint="Mật khẩu"
+                android:inputType="textPassword">
 
             </com.google.android.material.textfield.TextInputEditText>
-
-
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="du lieu khong hop le !"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/validate_matkhau_login"
+                android:textSize="17dp"
+                android:textStyle="normal"
+                android:textColor="@color/purple_700"
+                android:visibility="gone"
+                ></TextView>
         </com.google.android.material.textfield.TextInputLayout>
 
-
-
     </RelativeLayout>
+
 
     <Button
         android:layout_width="match_parent"
@@ -104,7 +125,20 @@
         android:drawablePadding="5dp"
         android:id="@+id/btn_dangnhap"
         ></Button>
-
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tài khoản hoặc mật khẩu không chính xác !"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="10dp"
+        android:id="@+id/validate_login"
+        android:textSize="17dp"
+        android:textStyle="normal"
+        android:textColor="@color/purple_700"
+        android:visibility="gone"
+        android:gravity="center"
+        ></TextView>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
